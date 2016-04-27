@@ -28,7 +28,7 @@ describe('Users', function () {
     it('should be able to get same user as login', function (done) {
         _user.email = credentials.email;
         _user.senha = credentials.senha;
-        server.post('/sign-in')
+        server.post('/auth/sign-in')
             .send(_user)
             .expect(200)
             .end(function (Err, response) {
@@ -50,7 +50,7 @@ describe('Users', function () {
     it('should be able to get all users', function (done) {
         _user.email = credentials.email;
         _user.senha = credentials.senha;
-        server.post('/sign-in')
+        server.post('/auth/sign-in')
             .send(_user)
             .expect(200)
             .end(function (Err, response) {

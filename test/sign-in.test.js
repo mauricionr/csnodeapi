@@ -28,7 +28,7 @@ describe('Sign in', function () {
     it('should be able sign in a user', function (done) {
         _user.email = credentials.email;
         _user.senha = credentials.senha;
-        server.post('/sign-in')
+        server.post('/auth/sign-in')
             .send(_user)
             .expect(200)
             .end(function (Err, response) {
@@ -42,7 +42,7 @@ describe('Sign in', function () {
     it('should not be able sign in user with wrong password', function (done) {
         _user.email = credentials.email;
         _user.senha = 'passw0rd';
-        server.post('/sign-in')
+        server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
             .end(function (Err, response) {
@@ -56,7 +56,7 @@ describe('Sign in', function () {
     it('should not be able to sign in user with wrong email', function (done) {
         _user.email = "usuarioNaoExiste@teste.com.br";
         _user.senha = credentials.senha;
-        server.post('/sign-in')
+        server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
             .end(function (Err, response) {
@@ -70,7 +70,7 @@ describe('Sign in', function () {
     it('should not be able to sign in user with wrong email and wrong password', function (done) {
         _user.email = "usuarioNaoExiste@teste.com.br";
         _user.senha = "sldjksijids";
-        server.post('/sign-in')
+        server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
             .end(function (Err, response) {

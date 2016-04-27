@@ -29,7 +29,7 @@ describe('Sign up', function () {
         _user.nome = 'register_new_user';
         _user.email = 'register_new_user_@test.com';
         _user.token = jwt.sign(_user, config.superSecrete, config.expire);
-        server.post('/sign-up')
+        server.post('/auth/sign-up')
             .send(_user)
             .expect(200)
             .end(function (Err, response) {
@@ -43,7 +43,7 @@ describe('Sign up', function () {
     it('should not be able to register a new user', function (done) {
         _user.email = credentials.email;
         _user.token = jwt.sign(_user, config.superSecrete, config.expire);
-        server.post('/sign-up')
+        server.post('/auth/sign-up')
             .send(_user)
             .expect(200, config.emailExistente)
             .end(function (Err, response) {
