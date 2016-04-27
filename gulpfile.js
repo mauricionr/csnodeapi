@@ -22,7 +22,7 @@ gulp.task('lint', function () {
 gulp.task('browser-sync', ['nodemon'], function () {
 	browserSync.init(null, {
 		proxy: "http://localhost:3000",
-        files: ["gulpfile.js", apiDir],
+        files: ["gulpfile.js", apiDir, './*.html'],
         browser: "google chrome",
         port: 7000,
 	});
@@ -48,7 +48,7 @@ gulp.task('nodemon', function (cb) {
 	var started = false;
 	return nodemon({
 		script: 'server.js',
-		tasks: ['lint']
+		tasks: ['default']
 	})
 		.on('start', function () {
 			// to avoid nodemon being started multiple times

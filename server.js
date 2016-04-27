@@ -1,12 +1,10 @@
 'use strict';
 
-//Require packages
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
-//Congifure application
 var app = express();
 var port = process.env.PORT || 3000;
 var config = require('./resource/config');
