@@ -14,16 +14,14 @@ api.use(function (req, res, next) {
     req.token = token;
     jwt.verify(token, config.superSecrete, function (err, decoded) {
       if (err) {
-        return res.json({ mensagem: 'Falha na verificação do token' });
+        return res.staus(401).send(config.sessaoInvalida);
       } else {
         req.decoded = decoded;
         next();
       }
     });
   } else {
-    return res.status(401).send({
-      mensagem: 'Não autorizado'
-    });
+    return res.status(401).send(config.naoAutorizado);
   }
 });
 

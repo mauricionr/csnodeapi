@@ -3,5 +3,7 @@ module.exports = {
     superSecrete:'superSecrete',
     mensagem:'Algo deu errado!',
     emailExistente:'E-mail já existente',
-    usuarioOuSenha: 'Usuário e/ou senha inválidos'
+    usuarioOuSenha: 'Usuário e/ou senha inválidos',
+    naoAutorizado:'Não autorizado',
+    sessaoInvalida:'Sessão Invalida'
 };

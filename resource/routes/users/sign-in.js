@@ -13,7 +13,7 @@ module.exports = function (req, res) {
             res.send(config.mensagem);
         }
         if (!user) {
-            res.send(mensagem);
+            res.status(401).send(mensagem);
         } else if (user) {
             if (user.senha !== req.body.senha) {
                 res.status(401).send(mensagem);

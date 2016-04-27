@@ -6,8 +6,6 @@ var config = require(path.resolve('./resource/config'));
 var server, _user;
 
 describe('Sign up', function () {
-    console.log(User);
-    console.log(config);
     beforeEach(function (done) {
         server = request.agent(require(path.resolve('./server.js')));
         credentials = { email: 'testes@teste.com.br', senha: 'M3@n.jsI$Aw3$0m3' };
