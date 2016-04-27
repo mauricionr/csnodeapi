@@ -1,3 +1,5 @@
+"use strict";
+
 var User = require('../../models/user');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
@@ -12,7 +14,7 @@ module.exports = function (req, res) {
         email: req.body.email
     }, function (err, UsuarioJaExiste) {
         if (err) {
-            res.json(err)
+            res.send(config.mensagem);
         }
         if (!UsuarioJaExiste) {
             user.token = jwt.sign(user, config.superSecret, config.expire);
@@ -23,7 +25,7 @@ module.exports = function (req, res) {
                 res.json(userCreated);
             });
         } else {
-            res.json({ "menssagem": "E-mail já existente" })
+            res.json({ "menssagem": "E-mail já existente" });
         }
     });
-}
+};

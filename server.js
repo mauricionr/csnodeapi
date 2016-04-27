@@ -24,6 +24,10 @@ app.use(morgan('dev'));
 
 app.use('/api', api);
 
+app.get('*',function (req, res) {
+  res.sendFile(__dirname + '/index.html')
+})
+
 app.post('/sign-up', signUp);
 
 app.post('/sign-in', signIn);
