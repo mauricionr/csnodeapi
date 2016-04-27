@@ -1,16 +1,13 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Concrete Solution Test
+* Version 0.0.1
 
 ### How do I get set up? ###
 
-* Summary of set up
+* `git clone {repoURL}`
 * Configuration
 * Dependencies
 * Database configuration
