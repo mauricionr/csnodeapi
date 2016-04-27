@@ -31,9 +31,9 @@ describe('Sign in', function () {
         server.post('/sign-in')
             .send(_user)
             .expect(200)
-            .end(function (signupErr, signupRes) {
-                if (signupErr) {
-                    return done(signupErr);
+            .end(function (Err, response) {
+                if (Err) {
+                    return done(Err);
                 }
                 return done();
             });
@@ -45,9 +45,9 @@ describe('Sign in', function () {
         server.post('/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
-            .end(function (signupErr, signupRes) {
-                if (signupErr) {
-                    return done(signupErr);
+            .end(function (Err, response) {
+                if (Err) {
+                    return done(Err);
                 }
                 return done();
             });
@@ -59,9 +59,9 @@ describe('Sign in', function () {
         server.post('/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
-            .end(function (signupErr, signupRes) {
-                if (signupErr) {
-                    return done(signupErr);
+            .end(function (Err, response) {
+                if (Err) {
+                    return done(Err);
                 }
                 return done();
             });
@@ -73,9 +73,9 @@ describe('Sign in', function () {
         server.post('/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
-            .end(function (signupErr, signupRes) {
-                if (signupErr) {
-                    return done(signupErr);
+            .end(function (Err, response) {
+                if (Err) {
+                    return done(Err);
                 }
                 return done();
             });

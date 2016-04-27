@@ -14,7 +14,7 @@ api.use(function (req, res, next) {
     req.token = token;
     jwt.verify(token, config.superSecrete, function (err, decoded) {
       if (err) {
-        return res.staus(401).send(config.sessaoInvalida);
+        return res.status(401).send(config.sessaoInvalida);
       } else {
         req.decoded = decoded;
         next();
@@ -26,5 +26,7 @@ api.use(function (req, res, next) {
 });
 
 api.route('/users/:user_id').get(routes.getById);
+
+api.route('/users').get(routes.getAll);
 
 module.exports = api;

@@ -5,7 +5,7 @@ var User = require(path.resolve('./resource/models/user'));
 var config = require(path.resolve('./resource/config'));
 var server, _user;
 
-describe('Sign up', function () {
+describe('Users', function () {
     beforeEach(function (done) {
         server = request.agent(require(path.resolve('./server.js')));
         credentials = { email: 'testes@teste.com.br', senha: 'M3@n.jsI$Aw3$0m3' };
@@ -25,32 +25,48 @@ describe('Sign up', function () {
         done()
     });
 
-    it('should be able to register a new user', function (done) {
-        _user.nome = 'register_new_user';
-        _user.email = 'register_new_user_@test.com';
-        _user.token = jwt.sign(_user, config.superSecrete, config.expire);
-        server.post('/sign-up')
+    it('should be able to get same user as login', function (done) {
+        _user.email = credentials.email;
+        _user.senha = credentials.senha;
+        server.post('/sign-in')
             .send(_user)
             .expect(200)
             .end(function (Err, response) {
                 if (Err) {
                     return done(Err);
                 }
-                return done();
+                server.get('/api/users/' + response.body._id)
+                    .set('authentication', 'Bearer ' + response.body.token)
+                    .expect(200, response.body)
+                    .end(function (Err, Res) {
+                        if (Err) {
+                            return done(Err)
+                        }
+                        return done()
+                    })
             });
     });
-
-    it('should not be able to register a new user', function (done) {
+    
+    it('should be able to get all users', function (done) {
         _user.email = credentials.email;
-        _user.token = jwt.sign(_user, config.superSecrete, config.expire);
-        server.post('/sign-up')
+        _user.senha = credentials.senha;
+        server.post('/sign-in')
             .send(_user)
-            .expect(200, config.emailExistente)
+            .expect(200)
             .end(function (Err, response) {
                 if (Err) {
                     return done(Err);
                 }
-                return done();
+                server.get('/api/users')
+                    .set('authentication', 'Bearer ' + response.body.token)
+                    .expect(200)
+                    .end(function (Err, Res) {
+                        if (Err) {
+                            return done(Err)
+                        }
+                        return done()
+                    })
             });
     });
+
 });
