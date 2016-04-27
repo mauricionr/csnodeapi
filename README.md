@@ -1,26 +1,34 @@
-# README #
-
 ### What is this repository for? ###
 
-* Concrete Solution Test
+* Nodejs API Test
+* Author: [Maurício](https://github.com/mauricionr/jwt.git)
 * Version 0.0.1
-
 ### How do I get set up? ###
 
-* `git clone {repoURL}`
-* Configuration
-* Dependencies
-* Database configuration
+* Install [NodeJS](https://nodejs.org/dist/v5.6.0/)
+
+* Install [MongoDB](https://www.mongodb.org/downloads#production)
+
+       *Make sure MongoDB is running in background*
+
+       *Make sure MongoDB default folder `data\db` exists in expected location*
+
+* Clone
+
+       `git clone https://github.com/mauricionr/jwt.git`
+
+* Installl dependencies
+       
+      `npm install`
+
 * How to run tests
-* Deployment instructions
 
-### Contribution guidelines ###
+      `npm run test`
 
-* Writing tests
-* Code review
-* Other guidelines
+* How to build
 
-### Who do I talk to? ###
+      `npm run buid`
 
-* Repo owner or admin
-* Other community or team contact
+* How to develop
+
+      `npm run start`
