@@ -48,7 +48,7 @@ gulp.task('nodemon', function (cb) {
 	var started = false;
 	return nodemon({
 		script: 'server.js',
-		tasks: ['default']
+		tasks: ['lint']
 	})
 		.on('start', function () {
 			// to avoid nodemon being started multiple times

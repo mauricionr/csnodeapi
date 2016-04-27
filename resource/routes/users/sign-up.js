@@ -3,6 +3,7 @@
 var User = require('../../models/user');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
+var crypto = require('crypto');
 
 module.exports = function (req, res) {
     var user = new User();
@@ -17,7 +18,19 @@ module.exports = function (req, res) {
             res.send(config.mensagem);
         }
         if (!UsuarioJaExiste) {
-            user.token = jwt.sign(user, config.superSecrete, config.expire);
+            var hashToken =
+                crypto
+                    .createHash('sha256', config.superSecrete)
+                    .update(config.superSecrete)
+                    .digest('base64');
+
+            user.senha = crypto
+                .createHash('sha256', user.senha)
+                .update(user.senha)
+                .digest('base64');
+
+            user.token = jwt.sign(user, hashToken, config.expire);
+
             user.save(function (err, userCreated) {
                 if (err) {
                     res.send(config.mensagem);

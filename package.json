@@ -4,16 +4,15 @@
   "description": "A simple implementation of JSON Web Tokens for authentication",
   "main": "server.js",
   "scripts": {
-    "pretest":"npm install -g mocha",
+    "pretest": "npm install -g mocha",
     "test": "./node_modules/.bin/mocha --reporter spec",
     "build:api": "gulp build:api",
     "clean": "gulp clean",
     "start": "gulp"
   },
-  "author": "",
+  "author": "Mauricio Nunes dos reis <mauricioskateboard@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "jsonwebtoken": "^5.7.0",
