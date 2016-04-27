@@ -48,5 +48,4 @@ Temporary Items
 
 # Custom directories and files to ignore
 /node_modules
-resource/config.js
 *.log

@@ -12,7 +12,7 @@ api.use(function (req, res, next) {
     var key = 'Bearer ';
     token = token.indexOf(key) > -1 ? token.substring(token.indexOf(' ') + 1) : token;
     req.token = token;
-    jwt.verify(token, config.superSecret, function (err, decoded) {
+    jwt.verify(token, config.superSecrete, function (err, decoded) {
       if (err) {
         return res.json({ mensagem: 'Falha na verificação do token' });
       } else {

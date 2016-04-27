@@ -17,7 +17,7 @@ module.exports = function (req, res) {
             res.send(config.mensagem);
         }
         if (!UsuarioJaExiste) {
-            user.token = jwt.sign(user, config.superSecret, config.expire);
+            user.token = jwt.sign(user, config.superSecrete, config.expire);
             user.save(function (err, userCreated) {
                 if (err) {
                     res.send(config.mensagem);
@@ -25,7 +25,7 @@ module.exports = function (req, res) {
                 res.json(userCreated);
             });
         } else {
-            res.json({ "menssagem": "E-mail já existente" });
+            res.send(config.emailExistente);
         }
     });
 };
