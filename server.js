@@ -24,7 +24,7 @@ app.use(morgan('dev'));
 
 app.use('/api', api);
 
-app.get('*', function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html')
 })
 

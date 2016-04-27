@@ -4,9 +4,9 @@
   "description": "A simple implementation of JSON Web Tokens for authentication",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:api":"gulp build:api",
-    "clean":"gulp clean",
+    "test": "make test",
+    "build:api": "gulp build:api",
+    "clean": "gulp clean",
     "start": "gulp"
   },
   "author": "",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.12.5",
+    "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
@@ -30,6 +31,10 @@
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.1.0",
-    "nodemon": "^1.9.1"
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.1",
+    "path": "^0.12.7",
+    "should": "^8.3.1",
+    "supertest": "^1.2.0"
   }
 }
