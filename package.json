@@ -4,7 +4,8 @@
   "description": "A simple implementation of JSON Web Tokens for authentication",
   "main": "server.js",
   "scripts": {
-    "test": "make test",
+    "pretest":"npm install -g mocha",
+    "test": "./node_modules/.bin/mocha --reporter spec",
     "build:api": "gulp build:api",
     "clean": "gulp clean",
     "start": "gulp"
