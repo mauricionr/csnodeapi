@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:api":"gulp build:api",
+    "clean":"gulp clean",
     "start": "gulp"
   },
   "author": "",
@@ -20,8 +22,11 @@
   "devDependencies": {
     "browser-sync": "^2.12.5",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
     "gulp-jshint": "^2.0.0",
     "gulp-nodemon": "^2.0.6",
+    "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.1.0",

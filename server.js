@@ -24,7 +24,7 @@ app.use(morgan('dev'));
 
 app.use('/api', api);
 
-app.get('*',function (req, res) {
+app.get('*', function (req, res) {
   res.sendFile(__dirname + '/index.html')
 })
 
@@ -35,3 +35,5 @@ app.post('/sign-in', signIn);
 app.listen(port, function () {
   console.log('Running on port ' + port);
 });
+
+module.exports = app;
