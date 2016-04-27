@@ -3,7 +3,7 @@ var path = require('path');
 var jwt = require('jsonwebtoken');
 var User = require(path.resolve('./resource/models/user'));
 var config = require(path.resolve('./resource/config'));
-var server, _user;
+var server, _user, credentials;
 
 describe('Sign in', function () {
     beforeEach(function (done) {
@@ -12,7 +12,7 @@ describe('Sign in', function () {
         _user = new User();
         _user.nome = 'Full name';
         _user.email = credentials.email;
-        _user.senha = config.getHash(credentials.senha);
+        _user.senha = config.getHash(credentials.senha, credentials.senha);
         _user.elefones = [{ ddd: 11, numero: 123123213 }, { ddd: 11, numero: 123132334 }];
         _user.token = jwt.sign(_user, config.superSecrete, config.expire);
         _user.save(function (err, user) {
@@ -27,7 +27,7 @@ describe('Sign in', function () {
 
     it('should be able sign in a user', function (done) {
         _user.email = credentials.email;
-        _user.senha = config.getHash(credentials.senha);
+        _user.senha = config.getHash(credentials.senha, credentials.senha);
         server.post('/auth/sign-in')
             .send(_user)
             .expect(200)
@@ -41,7 +41,8 @@ describe('Sign in', function () {
 
     it('should not be able sign in user with wrong password', function (done) {
         _user.email = credentials.email;
-        _user.senha = config.getHash('passw0rd');
+        var wrongPassword = 'passw0rd';
+        _user.senha = config.getHash(wrongPassword, wrongPassword);
         server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
@@ -55,7 +56,7 @@ describe('Sign in', function () {
 
     it('should not be able to sign in user with wrong email', function (done) {
         _user.email = "usuarioNaoExiste@teste.com.br";
-        _user.senha = config.getHash(credentials.senha);
+        _user.senha = config.getHash(credentials.senha, credentials.senha);
         server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
@@ -69,7 +70,8 @@ describe('Sign in', function () {
 
     it('should not be able to sign in user with wrong email and wrong password', function (done) {
         _user.email = "usuarioNaoExiste@teste.com.br";
-        _user.senha = config.getHash("sldjksijids");
+        var wrongPassword = "sldjksijids";
+        _user.senha = config.getHash(wrongPassword, wrongPassword);
         server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)

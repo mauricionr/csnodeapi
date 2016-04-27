@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 var superSecrete = "superSecrete";
 var crypto = require('crypto');
@@ -11,10 +11,12 @@ module.exports = {
     usuarioOuSenha: 'Usuário e/ou senha inválidos',
     naoAutorizado: 'Não autorizado',
     sessaoInvalida: 'Sessão Invalida',
-    getHash: function (key) {
-        return crypto
+    getHash: function (key, key2) {
+        var retorno = crypto
             .createHash('sha256', key || superSecrete)
-            .update(superSecrete)
+            .update(key2 || superSecrete)
             .digest('base64');
+            
+        return retorno;
     }
 };
