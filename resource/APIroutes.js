@@ -13,13 +13,7 @@ api.use(function (req, res, next) {
     var key = 'Bearer ';
     token = token.indexOf(key) > -1 ? token.substring(token.indexOf(' ') + 1) : token;
     req.token = token;
-
-    var hashToken =
-      crypto
-        .createHash('sha256', config.superSecrete)
-        .update(config.superSecrete)
-        .digest('base64');
-
+    var hashToken = config.getHash();
     jwt.verify(token, hashToken, function (err, decoded) {
       if (err) {
         return res.status(401).send(config.sessaoInvalida);

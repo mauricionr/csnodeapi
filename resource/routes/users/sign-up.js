@@ -19,19 +19,8 @@ module.exports = function (req, res) {
         }
         if (!UsuarioJaExiste) {
             var hashToken = config.getHash();
-            // crypto
-            //     .createHash('sha256', config.superSecrete)
-            //     .update(config.superSecrete)
-            //     .digest('base64');
-
-            user.senha = config.getHash(user.senha, user.senha); 
-            // crypto
-            //     .createHash('sha256', user.senha)
-            //     .update(user.senha)
-            //     .digest('base64');
-
+            user.senha = config.getHash(user.senha, user.senha);
             user.token = jwt.sign(user, hashToken, config.expire);
-
             user.save(function (err, userCreated) {
                 if (err) {
                     res.send(config.mensagem);
