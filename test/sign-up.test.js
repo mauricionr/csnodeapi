@@ -13,7 +13,7 @@ describe('Sign up', function () {
         _user.nome = 'Full name';
         _user.email = credentials.email;
         _user.senha = config.getHash(credentials.senha, credentials.senha);
-        _user.elefones = [{ ddd: 11, numero: 123123213 }, { ddd: 11, numero: 123132334 }];
+        _user.telefones = [{ ddd: 11, numero: 123123213 }, { ddd: 11, numero: 123132334 }];
         _user.token = jwt.sign(_user, config.superSecrete, config.expire);
         _user.save(function (err, user) {
             done();

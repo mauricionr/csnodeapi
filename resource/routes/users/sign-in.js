@@ -20,8 +20,7 @@ module.exports = function (req, res) {
             if (user.senha !== req.body.senha) {
                 res.status(401).send(mensagem);
             } else {
-                var hashToken = config.getHash();
-                user.token = jwt.sign(user, hashToken, config.expire);
+                user.token = jwt.sign(user, config.getHash(), config.expire);
                 user.ultimo_login = new Date();
                 user.save(function (err, userCreated) {
                     if (err) {

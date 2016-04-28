@@ -8,13 +8,19 @@ var server, _user, credentials;
 describe('Sign in', function () {
     beforeEach(function (done) {
         server = request.agent(require(path.resolve('./server.js')));
-        credentials = { email: 'testes12321@teste.com.br', senha: 'p@ssw0rd' };
+        credentials = {
+            email: config.testsUsers.user.email,
+            senha: config.testsUsers.user.senha
+        };
         _user = new User();
-        _user.nome = 'Full name';
+        _user.nome = config.testsUsers.user.nome;
         _user.email = credentials.email;
-        _user.senha = config.getHash(credentials.senha, credentials.senha);
-        _user.elefones = [{ ddd: 11, numero: 123123213 }, { ddd: 11, numero: 123132334 }];
-        _user.token = jwt.sign(_user, config.superSecrete, config.expire);
+        _user.senha = credentials.senha;
+        _user.telefones = [
+            { ddd: 11, numero: 123123213 },
+            { ddd: 11, numero: 123132334 }
+        ];
+        _user.token = jwt.sign(_user, config.getHash(), config.expire);
         _user.save(function (err, user) {
             done();
         });
@@ -26,8 +32,6 @@ describe('Sign in', function () {
     });
 
     it('should be able sign in a user', function (done) {
-        _user.email = credentials.email;
-        _user.senha = config.getHash(credentials.senha, credentials.senha);
         server.post('/auth/sign-in')
             .send(_user)
             .expect(200)
@@ -41,8 +45,7 @@ describe('Sign in', function () {
 
     it('should not be able sign in user with wrong password', function (done) {
         _user.email = credentials.email;
-        var wrongPassword = 'passw0rd';
-        _user.senha = config.getHash(wrongPassword, wrongPassword);
+        _user.senha = config.testsUsers.user.wrongPassword;;
         server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
@@ -55,8 +58,8 @@ describe('Sign in', function () {
     });
 
     it('should not be able to sign in user with wrong email', function (done) {
-        _user.email = "usuarioNaoExiste@teste.com.br";
-        _user.senha = config.getHash(credentials.senha, credentials.senha);
+        _user.email = config.testsUsers.user.wrongEmail;
+        _user.senha = credentials.senha;
         server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
@@ -69,9 +72,8 @@ describe('Sign in', function () {
     });
 
     it('should not be able to sign in user with wrong email and wrong password', function (done) {
-        _user.email = "usuarioNaoExiste@teste.com.br";
-        var wrongPassword = "sldjksijids";
-        _user.senha = config.getHash(wrongPassword, wrongPassword);
+        _user.email = config.testsUsers.user.wrongEmail;
+        _user.senha = config.testsUsers.user.wrongPassword;
         server.post('/auth/sign-in')
             .send(_user)
             .expect(401, config.usuarioOuSenha)
