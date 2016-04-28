@@ -15,7 +15,7 @@ describe('Sign in', function () {
         _user = new User();
         _user.nome = config.testsUsers.user.nome;
         _user.email = credentials.email;
-        _user.senha = credentials.senha;
+        _user.senha = config.getHash(credentials.senha, credentials.senha);
         _user.telefones = [
             { ddd: 11, numero: 123123213 },
             { ddd: 11, numero: 123132334 }
@@ -32,6 +32,7 @@ describe('Sign in', function () {
     });
 
     it('should be able sign in a user', function (done) {
+        _user.senha = credentials.senha;
         server.post('/auth/sign-in')
             .send(_user)
             .expect(200)
