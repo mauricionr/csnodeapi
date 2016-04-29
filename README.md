@@ -1,7 +1,7 @@
 ### What is this repository for? ###
 
 * Nodejs API Test
-* Author: [Maurício](https://github.com/mauricionr/jwt.git)
+* Author: [Maurício](https://github.com/mauricionr/)
 * Version 0.0.1
 ### How do I get set up? ###
 
@@ -15,7 +15,7 @@
 
 * Clone
 
-       `git clone https://github.com/mauricionr/jwt.git`
+       `git clone https://github.com/mauricionr/csnodeapi.git`
 
 * Installl dependencies
        
