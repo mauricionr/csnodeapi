@@ -5,7 +5,6 @@ var jwt = require('jsonwebtoken');
 var api = express.Router();
 var config = require('./config');
 var routes = require('./routes/index');
-var crypto = require('crypto');
 
 api.use(function (req, res, next) {
   var token = req.query.token || req.body.token || req.headers['x-access-token'] || req.headers.authentication;
