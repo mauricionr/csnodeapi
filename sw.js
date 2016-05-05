@@ -26,7 +26,8 @@ self.addEventListener('install', function (e) {
     caches.open('offlineapp').then(function (cache) {
       return cache.addAll([
         '/',
-        '/index.html'
+        '/index.html',
+        '/app.js'
       ]).then(function () {
         return self.skipWaiting();
       });
