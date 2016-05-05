@@ -6,7 +6,7 @@ const Inicio = React.createClass({
     render() {
         return (
             <div>
-                <h1>Inicio!</h1>
+                <p>Inicio!</p>
             </div>
         );
     }

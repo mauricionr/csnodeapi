@@ -14,6 +14,7 @@ const Header = React.createClass({
                     <nav className="bm-item-list">
                         <a className="center-block" href="#/">Inicio</a>
                         <a className="center-block" href="#/login">Login</a>
+                        <a className="center-block" href="#/register">Register</a>
                     </nav>
                 </Menu>
             </MenuWrap> 

@@ -11,7 +11,7 @@ const App = React.createClass({
     propTypes: {children: PropTypes.object},
     render() {
         return (
-            <div id="outer-container">
+            <div id="outer-container" className="content">
                 <Header pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } />
                 <main id="page-wrap" className="col-md-12">
                     {this.props.children}

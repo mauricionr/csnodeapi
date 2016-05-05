@@ -20,7 +20,7 @@
 // Version 0.54
 
 importScripts('/cache-polyfill.js');
-//debugger;
+
 self.addEventListener('install', function (e) {
   e.waitUntil(
     caches.open('offlineapp').then(function (cache) {

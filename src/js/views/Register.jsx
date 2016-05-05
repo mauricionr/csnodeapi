@@ -3,7 +3,7 @@
 import React from 'react';
 import LoginOrRegister from '../components/LoginOrRegister';
 
-const Login = React.createClass({
+const Register = React.createClass({
     render() {
         return (
             <div>
@@ -13,4 +13,4 @@ const Login = React.createClass({
     }
 });
 
-export default Login;
+export default Register;
