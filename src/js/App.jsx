@@ -5,14 +5,16 @@ Author:
 'use strict';
 
 import React, { PropTypes } from 'react';
- 
+import Header from './components/Header';
+
 const App = React.createClass({
     propTypes: {children: PropTypes.object},
     render() {
         return (
             <div id="outer-container">
-                <main id="page-wrap">
-                    {this.props.children || <div>Hello World!</div>}
+                <Header pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } />
+                <main id="page-wrap" className="col-md-12">
+                    {this.props.children}
                 </main>
             </div>
         );

@@ -20,10 +20,10 @@
 // Version 0.54
 
 importScripts('/cache-polyfill.js');
-debugger;
+//debugger;
 self.addEventListener('install', function (e) {
   e.waitUntil(
-    caches.open('airhorner').then(function (cache) {
+    caches.open('offlineapp').then(function (cache) {
       return cache.addAll([
         '/',
         '/index.html'
