@@ -4,10 +4,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 module.exports = {
-    entry: ['./src/js/render.js', './src/sw.js', './src/cache-polyfill.js'],
+    entry: ['./src/js/render.js'],
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name].app.min.js'
+        filename: 'app.js'
     },
     module: {
         loaders: require('./webpack.loaders')
@@ -23,7 +23,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'prevenda',
             template: './src/index.html',
-            scriptFilename: 'app.min.js'
+            scriptFilename: 'app.js'
         })
     ]
 };

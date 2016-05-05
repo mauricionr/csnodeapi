@@ -7,7 +7,7 @@ const Login = React.createClass({
     render() {
         return (
             <div>
-                <LoginOrRegister />
+                <LoginOrRegister pageName="Login" />
             </div>
         );
     }

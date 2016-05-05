@@ -7,7 +7,7 @@ const Register = React.createClass({
     render() {
         return (
             <div>
-                <LoginOrRegister />
+                <LoginOrRegister pageName="Register"/>
             </div>
         );
     }
