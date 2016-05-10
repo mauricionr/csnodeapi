@@ -24,6 +24,12 @@ module.exports = {
         extensions: require('./webpack.extensions')
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            'Reflux': 'reflux',
+            'React': 'react',
+            '$': 'jquery',
+            'JQuery': 'jquery'
+        }),
         new webpack.NoErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
