@@ -14,6 +14,7 @@ const DefaultUser = {
 const UserStore = Reflux.createStore({
     listenables: [Actions],
     currentUser: Object.assign({}, DefaultUser),
+    isLoggedIn: false,
     table: client.getTable('usuarios'),
     login(loginData) {
         this.table
@@ -22,7 +23,8 @@ const UserStore = Reflux.createStore({
             .done((response) => this.loginCompleted(response), (error) => console.log(error));
     },
     loginCompleted(response) {
-        this.currentUser = Object.assign({}, response);
+        this.isLoggedIn = true;
+        this.currentUser = Object.assign({}, response[0]);
         this.trigger(this.currentUser);
     },
     register(loginData) {
@@ -31,10 +33,12 @@ const UserStore = Reflux.createStore({
             .done((response) => this.registerCompleted(response), (error) => console.log(error));
     },
     registerCompleted(response) {
-        this.currentUser = Object.assign({}, response);
+        this.isLoggedIn = true;
+        this.currentUser = Object.assign({}, response[0]);
         this.trigger(this.currentUser);
     },
     logOut() {
+        this.isLoggedIn = false;
         this.currentUser = Object.assign({}, DefaultUser);
         this.logOutCompleted();
     },

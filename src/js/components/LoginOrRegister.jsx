@@ -36,31 +36,22 @@ const LoginOrRegister = React.createClass({
         this.setState({ usuario });
     },
     render() {
-        let elements = [];
+        let elementsToRender = [];
         if (this.props.pageName !== 'Login') {
-            elements.push((<div className="form-group">
-                <label htmlFor="nome">Nome</label>
-                <input
-                    type="text"
-                    key="0"
-                    ref="nome"
-                    onChange={this.handleChange}
-                    className="form-control"
-                    id="nome"
-                    placeholder="Nome" />
-            </div>));
-            elements.push((<div className="form-group">
-                <label htmlFor="telefone">Telefone</label>
-                <input
-                    type="number"
-                    ref="telefone"
-                    key="1"
-                    onChange={this.handleChange}
-                    className="form-control"
-                    id="telefone"
-                    placeholder="Telefone" />
-            </div>));
+            elementsToRender.push({ type: 'text', ref: 'nome', onChange: this.handleChange, id: 'nome', placeholder: 'Nome' });
+            elementsToRender.push({ type: 'number', ref: 'telefone', onChange: this.handleChange, id: 'telefone', placeholder: 'Telefone' });
         }
+        let elements = elementsToRender.map((current, index) => (<div className="form-group">
+            <label htmlFor={current.id}>Telefone</label>
+            <input
+                type={current.type}
+                ref={current.ref}
+                key={index}
+                onChange={this.onChange}
+                className="form-control"
+                id={current.id}
+                placeholder={current.placeholder} />
+        </div>));
         return (
             <div>
                 <strong>{this.props.pageName}</strong>

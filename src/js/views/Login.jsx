@@ -1,6 +1,5 @@
 'use strict';
 
-//import Reflux from 'reflux';
 import LoginOrRegister from '../components/LoginOrRegister';
 import UserStore from '../stores/user';
 
