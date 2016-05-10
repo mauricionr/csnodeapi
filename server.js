@@ -7,9 +7,6 @@ var morgan = require('morgan');
 var path = require('path');
 
 var app = express();
-var config = require('./resource/config');
-var api = require('./resource/APIroutes');
-var auth = require('./resource/Authroutes')
 var isDevelopment = (process.env.NODE_ENV !== 'production');
 var static_path = path.join(__dirname, !isDevelopment ? 'dist' : 'src');
 
@@ -22,17 +19,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(static_path))
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 app.use(morgan('dev'));
-
-app.use('/api', api);
-
-app.use('/auth', auth)
 
 app.get('/', function (req, res) {
   res.sendFile('/index.html')

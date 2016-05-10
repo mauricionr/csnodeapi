@@ -4,10 +4,6 @@
   "description": "A simple implementation of JSON Web Tokens for authentication",
   "main": "server.js",
   "scripts": {
-    "preinstall": "npm install -g mocha gulp",
-    "test": "./node_modules/.bin/mocha --reporter spec",
-    "build:api": "gulp build:api",
-    "clean": "gulp clean",
     "start": "node server.js",
     "build": "./node_modules/.bin/webpack",
     "dist": "./node_modules/.bin/webpack -p --config webpack.production.config.js"
@@ -17,6 +13,7 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
+    "jquery": "^2.2.3",
     "jsonwebtoken": "^5.7.0",
     "mongoose": "^4.4.13",
     "morgan": "^1.7.0",
