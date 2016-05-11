@@ -8,8 +8,8 @@ var morgan = require('morgan');
 var app = express();
 var port = process.env.PORT || 3000;
 var config = require('./resource/config');
-var api = require('./resource/APIroutes');
-var auth = require('./resource/Authroutes')
+var api = require('./resource/apiRoutes');
+var auth = require('./resource/authRoutes')
 
 mongoose.connect(config.dbURL);
 
