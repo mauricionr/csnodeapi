@@ -22,7 +22,7 @@ api.use(function (req, res, next) {
       }
     });
   } else {
-    return res.status(401).send(config.naoAutorizado);
+    return res.status(400).send(config.tokenMessage);
   }
 });
 
