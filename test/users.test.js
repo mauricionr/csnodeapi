@@ -3,6 +3,7 @@ var path = require('path');
 var jwt = require('jsonwebtoken');
 var User = require(path.resolve('./resource/models/user'));
 var config = require(path.resolve('./resource/config'));
+var getHash = require(path.resolve('./resource/getHash'));
 var server, _user, credentials;
 
 describe('Users', function () {
@@ -12,9 +13,9 @@ describe('Users', function () {
         _user = new User();
         _user.nome = config.testsUsers.user.nome;
         _user.email = credentials.email;
-        _user.senha = config.getHash(credentials.senha, credentials.senha);
+        _user.senha = getHash(credentials.senha, credentials.senha);
         _user.telefones = [{ ddd: 11, numero: 123123213 }, { ddd: 11, numero: 123132334 }];
-        _user.token = jwt.sign(_user, config.getHash(), config.expire);
+        _user.token = jwt.sign(_user, getHash(), config.expire);
         _user.save(function (err, user) {
             done();
         });

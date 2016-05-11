@@ -3,7 +3,7 @@
 var User = require('../../models/user');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
-//var crypto = require('crypto');
+var getHash = require('../../getHash');
 
 module.exports = function (req, res) {
     var user = new User();
@@ -13,22 +13,22 @@ module.exports = function (req, res) {
     user.telefones = req.body.telefones;
     User.findOne({
         email: req.body.email
-    }, function (err, UsuarioJaExiste) {
+    }, function (err, userExist) {
         if (err) {
-            res.send(config.mensagem);
+            return res.send(config.mensagem);
         }
-        if (!UsuarioJaExiste) {
-            var hashToken = config.getHash();
-            user.senha = config.getHash(user.senha, user.senha);
+        if (!userExist) {
+            var hashToken = getHash();
+            user.senha = getHash(user.senha, user.senha);
             user.token = jwt.sign(user, hashToken, config.expire);
             user.save(function (err, userCreated) {
                 if (err) {
-                    res.send(config.mensagem);
+                    return res.send(config.mensagem);
                 }
-                res.json(userCreated);
+                return res.json(userCreated);
             });
         } else {
-            res.send(config.emailExistente);
+            return res.send(config.emailExistente);
         }
     });
 };
