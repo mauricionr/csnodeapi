@@ -35,19 +35,31 @@
 
 ### API ###
 
-**route:** */auth/sign-in*
+POST /auth/sign-in HTTP/1.1
 
-**method:** POST
+Host: localhost:3000
 
-**body:** `{"email":"emailparalogin@login.com.br","senha":"senha123"}`
+Content-Type: application/json
+
+Accept: application/json
+
+Cache-Control: no-cache
+
+{ "nome": "mauricionunes", "email": "teste2@teste.com.br", "senha": "abc123" }
 
 ---
 
-**route:** */auth/sign-up*
+POST /auth/sign-up HTTP/1.1
 
-**method:** POST
+Host: localhost:3000
 
-**body:** `{"email":"emailparalogin@login.com.br","senha":"senha123", "nome":"nomeDoUsuario", "telefones":[]}`
+Content-Type: application/json
+
+Accept: application/json
+
+Cache-Control: no-cache
+
+{ "nome": "mauricionunes", "email": "teste2@teste.com.br", "senha": "abc123", "telefones": [ { "numero": 123456789, "ddd": 11 }, { "numero": 32132132131, "ddd": 11 } ] }
 
 ---
 
