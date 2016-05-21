@@ -2,7 +2,7 @@
 
 var express = require('express');
 var auth = express.Router();
-var routes = require('./routes/index');
+var routes = require('./routes/users/index');
 
 auth.route('/sign-up').post(routes.signUp);
 

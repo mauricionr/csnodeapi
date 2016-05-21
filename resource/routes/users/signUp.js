@@ -1,9 +1,10 @@
 "use strict";
 
-var User = require('../../models/user');
 var jwt = require('jsonwebtoken');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 var config = require('../../config');
-var getHash = require('../../getHash');
+var getHash = require('../../lib/getHash');
 
 module.exports = function (req, res) {
     var user = new User();

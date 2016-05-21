@@ -3,7 +3,7 @@ var path = require('path');
 var jwt = require('jsonwebtoken');
 var User = require(path.resolve('./resource/models/user'));
 var config = require(path.resolve('./resource/config'));
-var getHash = require(path.resolve('./resource/getHash'));
+var getHash = require(path.resolve('./resource/lib/getHash'));
 var server, _user, credentials;
 
 describe('Sign up', function () {

@@ -1,33 +1,23 @@
 "use strict";
 
 var express = require('express');
-var jwt = require('jsonwebtoken');
 var api = express.Router();
-var config = require('./config');
-var routes = require('./routes/index');
-var getHash = require('./getHash');
-api.use(function (req, res, next) {
-  var token = req.headers.authentication;
-  if (token) {
-    var key = 'Bearer ';
-    token = token.indexOf(key) > -1 ? token.substring(token.indexOf(' ') + 1) : token;
-    req.token = token;
-    var hashToken = getHash();
-    jwt.verify(token, hashToken, function (err, decoded) {
-      if (err) {
-        return res.status(401).send(config.sessaoInvalida);
-      } else {
-        req.decoded = decoded;
-        next();
-      }
-    });
-  } else {
-    return res.status(400).send(config.tokenMessage);
-  }
-});
+var userRoutes = require('./routes/users/index');
+var domainRoutes = require('./routes/domains/index');
+var tokenMiddleware = require('./lib/tokenMiddleware');
 
-api.route('/users/:user_id').get(routes.getById);
+//token middleware
+api.use(tokenMiddleware);
+//users
+api.route('/users/:user_id').get(userRoutes.getById);
+api.route('/users').get(userRoutes.getAll);
 
-api.route('/users').get(routes.getAll);
+//domains
+api.route('/domains').get(domainRoutes.get);
+api.route('/domains').post(domainRoutes.create);
+api.route('/domains').patch(domainRoutes.update);
+api.route('/domains').delete(domainRoutes.delete);
+api.route('/domains/:url').get(domainRoutes.getOne);
+
 
 module.exports = api;

@@ -20,12 +20,12 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 app.use('/api', api);
+app.use('/auth', auth);
+
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html')
 })
-
-app.use('/auth', auth)
 
 app.listen(port, function () {
   console.log('Running on port ' + port);
