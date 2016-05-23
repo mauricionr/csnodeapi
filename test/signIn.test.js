@@ -6,6 +6,8 @@ var config = require(path.resolve('./resource/config'));
 var getHash = require(path.resolve('./resource/lib/getHash'));
 var server, _user, credentials;
 
+config.testsUsers = require('./data/user').testsUsers;
+
 describe('Sign in', function () {
     beforeEach(function (done) {
         server = request.agent(require(path.resolve('./server.js')));

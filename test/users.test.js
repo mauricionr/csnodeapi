@@ -4,7 +4,10 @@ var jwt = require('jsonwebtoken');
 var User = require(path.resolve('./resource/models/user'));
 var config = require(path.resolve('./resource/config'));
 var getHash = require(path.resolve('./resource/lib/getHash'));
+var getAuthHeader = require(path.resolve('./resource/lib/getAuthHeader'));
 var server, _user, credentials;
+
+config.testsUsers = require('./data/user').testsUsers;
 
 describe('Users', function () {
     beforeEach(function (done) {
@@ -37,7 +40,7 @@ describe('Users', function () {
                     return done(Err);
                 }
                 server.get('/api/users/' + _user._id)
-                    .set('authentication', 'Bearer ' + _user.token)
+                    .set('authentication', getAuthHeader(_user.token))
                     .expect(200)
                     .end(function (Err, Res) {
                         if (Err) {
@@ -59,7 +62,7 @@ describe('Users', function () {
                     return done(Err);
                 }
                 server.get('/api/users')
-                    .set('authentication', 'Bearer ' + _user.token)
+                    .set('authentication', getAuthHeader(_user.token))
                     .expect(200)
                     .end(function (Err, Res) {
                         if (Err) {
