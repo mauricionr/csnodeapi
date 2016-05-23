@@ -36,9 +36,9 @@ describe('Users', function () {
                 if (Err) {
                     return done(Err);
                 }
-                server.get('/api/users/' + response.body._id)
-                    .set('authentication', 'Bearer ' + response.body.token)
-                    .expect(200, response.body)
+                server.get('/api/users/' + _user._id)
+                    .set('authentication', 'Bearer ' + _user.token)
+                    .expect(200)
                     .end(function (Err, Res) {
                         if (Err) {
                             return done(Err)
@@ -59,7 +59,7 @@ describe('Users', function () {
                     return done(Err);
                 }
                 server.get('/api/users')
-                    .set('authentication', 'Bearer ' + response.body.token)
+                    .set('authentication', 'Bearer ' + _user.token)
                     .expect(200)
                     .end(function (Err, Res) {
                         if (Err) {

@@ -6,6 +6,7 @@ var config = require('../config');
 
 module.exports = function (req, res, next) {
     var token = req.headers.authentication;
+    console.log(token);
     if (token) {
         var key = 'Bearer ';
         token = token.indexOf(key) > -1 ? token.substring(token.indexOf(' ') + 1) : token;
