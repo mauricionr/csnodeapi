@@ -10,5 +10,6 @@ module.exports = {
     emailExistente: 'E-mail já existente',
     usuarioOuSenha: 'Usuário e/ou senha inválidos',
     naoAutorizado: 'Não autorizado',
-    sessaoInvalida: 'Sessão Invalida'
+    sessaoInvalida: 'Sessão Invalida',
+    AuthHeader:'authentication'
 };

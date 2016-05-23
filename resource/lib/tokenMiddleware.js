@@ -5,7 +5,7 @@ var getHash = require('./getHash');
 var config = require('../config');
 
 module.exports = function (req, res, next) {
-    var token = req.headers.authentication;
+    var token = req.headers[config.AuthHeader];
     console.log(token);
     if (token) {
         var key = 'Bearer ';

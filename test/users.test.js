@@ -40,7 +40,7 @@ describe('Users', function () {
                     return done(Err);
                 }
                 server.get('/api/users/' + _user._id)
-                    .set('authentication', getAuthHeader(_user.token))
+                    .set(config.AuthHeader, getAuthHeader(_user.token))
                     .expect(200)
                     .end(function (Err, Res) {
                         if (Err) {
@@ -62,7 +62,7 @@ describe('Users', function () {
                     return done(Err);
                 }
                 server.get('/api/users')
-                    .set('authentication', getAuthHeader(_user.token))
+                    .set(config.AuthHeader, getAuthHeader(_user.token))
                     .expect(200)
                     .end(function (Err, Res) {
                         if (Err) {
