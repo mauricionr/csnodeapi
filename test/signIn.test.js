@@ -6,7 +6,7 @@ var config = require(path.resolve('./resource/config'));
 var getHash = require(path.resolve('./resource/lib/getHash'));
 var server, _user, credentials;
 
-config.testsUsers = require('./data/user').testsUsers;
+config.testsUsers = require('./data/user');
 
 describe('Sign in', function () {
     beforeEach(function (done) {

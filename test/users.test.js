@@ -7,7 +7,7 @@ var getHash = require(path.resolve('./resource/lib/getHash'));
 var getAuthHeader = require(path.resolve('./resource/lib/getAuthHeader'));
 var server, _user, credentials;
 
-config.testsUsers = require('./data/user').testsUsers;
+config.testsUsers = require('./data/user');
 
 describe('Users', function () {
     beforeEach(function (done) {
