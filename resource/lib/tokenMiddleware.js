@@ -2,16 +2,15 @@
 
 var jwt = require('jsonwebtoken');
 var getHash = require('./getHash');
+var getToken = require('./getToken');
 var config = require('../config');
+var hashToken, token;
 
 module.exports = function (req, res, next) {
-    var token = req.headers[config.AuthHeader];
-    console.log(token);
+    token = req.headers[config.AuthHeader];
     if (token) {
-        var key = 'Bearer ';
-        token = token.indexOf(key) > -1 ? token.substring(token.indexOf(' ') + 1) : token;
-        req.token = token;
-        var hashToken = getHash();
+        token = getToken(token);
+        hashToken = getHash();
         jwt.verify(token, hashToken, function (err, decoded) {
             if (err) {
                 return res.status(401).send(config.sessaoInvalida);
