@@ -10,14 +10,11 @@ module.exports = function (req, res, next) {
     token = req.headers[config.AuthHeader];
     if (token) {
         token = getToken(token);
-        hashToken = getHash();
-        jwt.verify(token, hashToken, function (err, decoded) {
-            if (err) {
-                return res.status(401).send(config.sessaoInvalida);
-            } else {
-                req.decoded = decoded;
-                next();
-            }
+        jwt.verify(token, getHash(), function (err, decoded) {
+            if (err) return res.status(401).send(config.sessaoInvalida);
+
+            req.decoded = decoded;
+            next();
         });
     } else {
         return res.status(400).send(config.tokenMessage);
